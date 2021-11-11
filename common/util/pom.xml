@@ -21,10 +21,14 @@
     <parent>
         <groupId>org.thingsboard</groupId>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <version>3.3.3</version>
 =======
         <version>3.3.4-SNAPSHOT</version>
 >>>>>>> Version set to 3.3.4-SNAPSHOT
+=======
+        <version>3.3.0</version>
+>>>>>>> Version set to 3.3.2
         <artifactId>common</artifactId>
     </parent>
     <groupId>org.thingsboard.common</groupId>

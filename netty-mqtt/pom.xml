@@ -20,18 +20,31 @@
     <parent>
         <groupId>org.thingsboard</groupId>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <version>3.3.3</version>
         <artifactId>thingsboard</artifactId>
     </parent>
     <artifactId>netty-mqtt</artifactId>
     <version>3.3.3</version>
 =======
+=======
+>>>>>>> Version set to 3.3.2
         <version>3.3.4-SNAPSHOT</version>
         <artifactId>thingsboard</artifactId>
     </parent>
     <artifactId>netty-mqtt</artifactId>
     <version>3.3.4-SNAPSHOT</version>
+<<<<<<< HEAD
 >>>>>>> Version set to 3.3.4-SNAPSHOT
+=======
+=======
+        <version>3.3.2</version>
+        <artifactId>thingsboard</artifactId>
+    </parent>
+    <artifactId>netty-mqtt</artifactId>
+    <version>3.3.2</version>
+>>>>>>> e1f43bc85f... Version set to 3.3.2
+>>>>>>> Version set to 3.3.2
     <packaging>jar</packaging>
 
     <name>Netty MQTT Client</name>
