@@ -514,6 +514,7 @@ public class SqlDatabaseUpgradeService implements DatabaseEntitiesUpgradeService
                 break;
             case "3.3.3":
                 try (Connection conn = DriverManager.getConnection(dbUrl, dbUserName, dbPassword)) {
+<<<<<<< HEAD
                     log.info("Updating schema ...");
                     try {
                         conn.createStatement().execute("ALTER TABLE edge DROP COLUMN edge_license_key;"); //NOSONAR, ignoring because method used to execute thingsboard database upgrade script
@@ -530,6 +531,16 @@ public class SqlDatabaseUpgradeService implements DatabaseEntitiesUpgradeService
                     log.info("Schema updated.");
                 } catch (Exception e) {
                     log.error("Failed updating schema!!!", e);
+=======
+                    log.info("Updating schema...");
+                    schemaUpdateFile = Paths.get(installScripts.getDataDir(), "upgrade", "3.3.3", SCHEMA_UPDATE_SQL);
+                    loadSql(schemaUpdateFile, conn);
+                    log.info("Updating schema settings...");
+                    conn.createStatement().execute("UPDATE tb_schema_settings SET schema_version = 3004000;");
+                    log.info("Schema updated");
+                } catch (Exception e) {
+                    log.error("Failed to update schema", e);
+>>>>>>> Delete OTA update packages of device profile with cascade when this profile is deleted
                 }
                 break;
             default:
