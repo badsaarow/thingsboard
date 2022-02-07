@@ -22,7 +22,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.thingsboard</groupId>
+<<<<<<< HEAD
         <version>3.3.3</version>
+=======
+        <version>3.3.4-SNAPSHOT</version>
+>>>>>>> Version set to 3.3.4-SNAPSHOT
         <artifactId>rule-engine</artifactId>
     </parent>
     <groupId>org.thingsboard.rule-engine</groupId>
