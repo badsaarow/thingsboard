@@ -21,6 +21,7 @@
     <groupId>org.thingsboard</groupId>
     <artifactId>thingsboard</artifactId>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <version>3.3.3</version>
 =======
 <<<<<<< HEAD
@@ -29,6 +30,9 @@
     <version>3.3.2</version>
 >>>>>>> e1f43bc85f... Version set to 3.3.2
 >>>>>>> Version set to 3.3.2
+=======
+    <version>3.3.4-SNAPSHOT</version>
+>>>>>>> Version set to 3.3.3-SNAPSHOT
     <packaging>pom</packaging>
 
     <name>Thingsboard</name>

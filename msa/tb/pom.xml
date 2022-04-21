@@ -22,6 +22,7 @@
         <groupId>org.thingsboard</groupId>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <version>3.3.3</version>
 =======
         <version>3.3.4-SNAPSHOT</version>
@@ -29,6 +30,12 @@
 =======
         <version>3.3.0</version>
 >>>>>>> Version set to 3.3.2
+=======
+        <version>3.3.0</version>
+=======
+        <version>3.3.3-SNAPSHOT</version>
+>>>>>>> e5594bde19... Version set to 3.3.3-SNAPSHOT
+>>>>>>> Version set to 3.3.3-SNAPSHOT
         <artifactId>msa</artifactId>
     </parent>
     <groupId>org.thingsboard.msa</groupId>
