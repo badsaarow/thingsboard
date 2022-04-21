@@ -22,6 +22,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <version>3.3.3</version>
         <artifactId>thingsboard</artifactId>
     </parent>
@@ -32,6 +33,8 @@
 >>>>>>> Version set to 3.3.2
 =======
 >>>>>>> Version set to 3.3.3-SNAPSHOT
+=======
+>>>>>>> Version set to 3.3.3
         <version>3.3.4-SNAPSHOT</version>
         <artifactId>thingsboard</artifactId>
     </parent>
@@ -57,7 +60,17 @@
     <artifactId>netty-mqtt</artifactId>
     <version>3.3.3-SNAPSHOT</version>
 >>>>>>> e5594bde19... Version set to 3.3.3-SNAPSHOT
+<<<<<<< HEAD
 >>>>>>> Version set to 3.3.3-SNAPSHOT
+=======
+=======
+        <version>3.3.3</version>
+        <artifactId>thingsboard</artifactId>
+    </parent>
+    <artifactId>netty-mqtt</artifactId>
+    <version>3.3.3</version>
+>>>>>>> be806743ef... Version set to 3.3.3
+>>>>>>> Version set to 3.3.3
     <packaging>jar</packaging>
 
     <name>Netty MQTT Client</name>

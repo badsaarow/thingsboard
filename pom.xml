@@ -22,6 +22,7 @@
     <artifactId>thingsboard</artifactId>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <version>3.3.3</version>
 =======
 <<<<<<< HEAD
@@ -33,6 +34,12 @@
 =======
     <version>3.3.4-SNAPSHOT</version>
 >>>>>>> Version set to 3.3.3-SNAPSHOT
+=======
+    <version>3.3.4-SNAPSHOT</version>
+=======
+    <version>3.3.3</version>
+>>>>>>> be806743ef... Version set to 3.3.3
+>>>>>>> Version set to 3.3.3
     <packaging>pom</packaging>
 
     <name>Thingsboard</name>
