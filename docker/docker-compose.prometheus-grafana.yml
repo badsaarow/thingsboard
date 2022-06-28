@@ -25,8 +25,8 @@ services:
   prometheus:
     image: prom/prometheus:v2.1.0
     volumes:
-      - ./monitoring/prometheus/:/etc/prometheus/
-      - prometheus_data:/prometheus
+      - "${CDSS_STORAGE_DIR}/monitoring/prometheus/:/etc/prometheus/"
+      - "${CDSS_STORAGE_DIR}/prometheus_data:/prometheus"
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
@@ -40,8 +40,8 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - grafana_data:/var/lib/grafana
-      - ./monitoring/grafana/provisioning/:/etc/grafana/provisioning/
+      - "${CDSS_STORAGE_DIR}/grafana_data:/var/lib/grafana"
+      - "${CDSS_STORAGE_DIR}/monitoring/grafana/provisioning/:/etc/grafana/provisioning/"
     env_file:
       - monitoring/grafana/config.monitoring
     restart: always

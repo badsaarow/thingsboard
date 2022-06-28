@@ -26,7 +26,7 @@ services:
       POSTGRES_DB: thingsboard
       POSTGRES_PASSWORD: postgres
     volumes:
-      - ./tb-node/postgres:/var/lib/postgresql/data
+      - "${CDSS_STORAGE_DIR}/tb-node/postgres:/var/lib/postgresql/data"
   tb-core1:
     env_file:
       - tb-node.postgres.env

@@ -19,28 +19,28 @@ version: '2.2'
 services:
   postgres:
     volumes:
-      - postgres-db-volume:/var/lib/postgresql/data
+      - "${CDSS_STORAGE_DIR}/postgres-db-volume:/var/lib/postgresql/data"
   tb-core1:
     volumes:
-      - tb-log-volume:/var/log/thingsboard
+      - "${CDSS_STORAGE_DIR}/tb-log-volume:/var/log/thingsboard"
   tb-rule-engine1:
     volumes:
-      - tb-log-volume:/var/log/thingsboard
+      - "${CDSS_STORAGE_DIR}/tb-log-volume:/var/log/thingsboard"
   tb-coap-transport:
     volumes:
-      - tb-coap-transport-log-volume:/var/log/tb-coap-transport
+      - "${CDSS_STORAGE_DIR}/tb-coap-transport-log-volume:/var/log/tb-coap-transport"
   tb-lwm2m-transport:
     volumes:
-      - tb-lwm2m-transport-log-volume:/var/log/tb-lwm2m-transport
+      - "${CDSS_STORAGE_DIR}/tb-lwm2m-transport-log-volume:/var/log/tb-lwm2m-transport"
   tb-http-transport1:
     volumes:
-      - tb-http-transport-log-volume:/var/log/tb-http-transport
+      - "${CDSS_STORAGE_DIR}/tb-http-transport-log-volume:/var/log/tb-http-transport"
   tb-mqtt-transport1:
     volumes:
-      - tb-mqtt-transport-log-volume:/var/log/tb-mqtt-transport
+      - "${CDSS_STORAGE_DIR}/tb-mqtt-transport-log-volume:/var/log/tb-mqtt-transport"
   tb-snmp-transport:
     volumes:
-      - tb-snmp-transport-log-volume:/var/log/tb-snmp-transport
+      - "${CDSS_STORAGE_DIR}/tb-snmp-transport-log-volume:/var/log/tb-snmp-transport"
 
 volumes:
   postgres-db-volume:

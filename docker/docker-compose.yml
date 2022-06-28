@@ -55,8 +55,8 @@ services:
     env_file:
       - tb-node.env
     volumes:
-      - ./tb-node/conf:/config
-      - ./tb-node/log:/var/log/thingsboard
+      - "${CDSS_STORAGE_DIR}/tb-node/conf:/config"
+      - "${CDSS_STORAGE_DIR}/tb-node/log:/var/log/thingsboard"
     depends_on:
       - zookeeper
       - redis
@@ -78,8 +78,8 @@ services:
     env_file:
       - tb-node.env
     volumes:
-      - ./tb-node/conf:/config
-      - ./tb-node/log:/var/log/thingsboard
+      - "${CDSS_STORAGE_DIR}/tb-node/conf:/config"
+      - "${CDSS_STORAGE_DIR}/tb-node/log:/var/log/thingsboard"
     depends_on:
       - zookeeper
       - redis
@@ -94,8 +94,8 @@ services:
     env_file:
       - tb-mqtt-transport.env
     volumes:
-      - ./tb-transports/mqtt/conf:/config
-      - ./tb-transports/mqtt/log:/var/log/tb-mqtt-transport
+      - "${CDSS_STORAGE_DIR}/tb-transports/mqtt/conf:/config"
+      - "${CDSS_STORAGE_DIR}/tb-transports/mqtt/log:/var/log/tb-mqtt-transport"
     depends_on:
       - zookeeper
   tb-http-transport1:
@@ -108,8 +108,8 @@ services:
     env_file:
       - tb-http-transport.env
     volumes:
-      - ./tb-transports/http/conf:/config
-      - ./tb-transports/http/log:/var/log/tb-http-transport
+      - "${CDSS_STORAGE_DIR}/tb-transports/http/conf:/config"
+      - "${CDSS_STORAGE_DIR}/tb-transports/http/log:/var/log/tb-http-transport"
     depends_on:
       - zookeeper
   tb-web-ui1:
@@ -124,9 +124,9 @@ services:
     container_name: "${LOAD_BALANCER_NAME}"
     image: thingsboard/haproxy-certbot:1.3.0
     volumes:
-     - ./haproxy/config:/config
-     - ./haproxy/letsencrypt:/etc/letsencrypt
-     - ./haproxy/certs.d:/usr/local/etc/haproxy/certs.d
+     - "${CDSS_STORAGE_DIR}/haproxy/config:/config"
+     - "${CDSS_STORAGE_DIR}/haproxy/letsencrypt:/etc/letsencrypt"
+     - "${CDSS_STORAGE_DIR}/haproxy/certs.d:/usr/local/etc/haproxy/certs.d"
     ports:
      - "80:80"
      - "443:443"
