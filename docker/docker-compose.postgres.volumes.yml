@@ -19,48 +19,9 @@ version: '2.2'
 services:
   postgres:
     volumes:
-      - "${CDSS_STORAGE_DIR}/postgres-db-volume:/var/lib/postgresql/data"
-  tb-core1:
-    volumes:
-      - "${CDSS_STORAGE_DIR}/tb-log-volume:/var/log/thingsboard"
-  tb-rule-engine1:
-    volumes:
-      - "${CDSS_STORAGE_DIR}/tb-log-volume:/var/log/thingsboard"
-  tb-coap-transport:
-    volumes:
-      - "${CDSS_STORAGE_DIR}/tb-coap-transport-log-volume:/var/log/tb-coap-transport"
-  tb-lwm2m-transport:
-    volumes:
-      - "${CDSS_STORAGE_DIR}/tb-lwm2m-transport-log-volume:/var/log/tb-lwm2m-transport"
-  tb-http-transport1:
-    volumes:
-      - "${CDSS_STORAGE_DIR}/tb-http-transport-log-volume:/var/log/tb-http-transport"
-  tb-mqtt-transport1:
-    volumes:
-      - "${CDSS_STORAGE_DIR}/tb-mqtt-transport-log-volume:/var/log/tb-mqtt-transport"
-  tb-snmp-transport:
-    volumes:
-      - "${CDSS_STORAGE_DIR}/tb-snmp-transport-log-volume:/var/log/tb-snmp-transport"
+      - postgres-db-volume:/var/lib/postgresql/data
 
 volumes:
   postgres-db-volume:
     external: true
     name: ${POSTGRES_DATA_VOLUME}
-  tb-log-volume:
-    external: true
-    name: ${TB_LOG_VOLUME}
-  tb-coap-transport-log-volume:
-    external: true
-    name: ${TB_COAP_TRANSPORT_LOG_VOLUME}
-  tb-lwm2m-transport-log-volume:
-    external: true
-    name: ${TB_LWM2M_TRANSPORT_LOG_VOLUME}
-  tb-http-transport-log-volume:
-    external: true
-    name: ${TB_HTTP_TRANSPORT_LOG_VOLUME}
-  tb-mqtt-transport-log-volume:
-    external: true
-    name: ${TB_MQTT_TRANSPORT_LOG_VOLUME}
-  tb-snmp-transport-log-volume:
-    external: true
-    name: ${TB_SNMP_TRANSPORT_LOG_VOLUME}

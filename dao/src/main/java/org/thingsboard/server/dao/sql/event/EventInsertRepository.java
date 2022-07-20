@@ -32,7 +32,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
 
-@PsqlDao
 @Repository
 @Transactional
 public class EventInsertRepository {

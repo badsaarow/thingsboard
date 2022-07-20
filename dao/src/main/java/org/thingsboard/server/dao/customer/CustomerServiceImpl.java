@@ -30,7 +30,6 @@ import org.thingsboard.server.dao.asset.AssetService;
 import org.thingsboard.server.dao.dashboard.DashboardService;
 import org.thingsboard.server.dao.device.DeviceService;
 import org.thingsboard.server.dao.entity.AbstractEntityService;
-import org.thingsboard.server.dao.entityview.EntityViewService;
 import org.thingsboard.server.dao.exception.IncorrectParameterException;
 import org.thingsboard.server.dao.service.DataValidator;
 import org.thingsboard.server.dao.service.PaginatedRemover;
@@ -64,11 +63,9 @@ public class CustomerServiceImpl extends AbstractEntityService implements Custom
     private DeviceService deviceService;
 
     @Autowired
-    private EntityViewService entityViewService;
-
-    @Autowired
     private DashboardService dashboardService;
 
+    @Lazy
     @Autowired
     private ApiUsageStateService apiUsageStateService;
 
@@ -100,9 +97,15 @@ public class CustomerServiceImpl extends AbstractEntityService implements Custom
     public Customer saveCustomer(Customer customer) {
         log.trace("Executing saveCustomer [{}]", customer);
         customerValidator.validate(customer, Customer::getTenantId);
-        Customer savedCustomer = customerDao.save(customer.getTenantId(), customer);
-        dashboardService.updateCustomerDashboards(savedCustomer.getTenantId(), savedCustomer.getId());
-        return savedCustomer;
+        try {
+            Customer savedCustomer = customerDao.save(customer.getTenantId(), customer);
+            dashboardService.updateCustomerDashboards(savedCustomer.getTenantId(), savedCustomer.getId());
+            return savedCustomer;
+        } catch (Exception e) {
+            checkConstraintViolation(e, "customer_external_id_unq_key", "Customer with such external id already exists!");
+            throw e;
+        }
+
     }
 
     @Override

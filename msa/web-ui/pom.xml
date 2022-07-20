@@ -20,36 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.thingsboard</groupId>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <version>3.3.3</version>
-=======
-        <version>3.3.4-SNAPSHOT</version>
->>>>>>> Version set to 3.3.4-SNAPSHOT
-=======
-=======
->>>>>>> Version set to 3.3.3-SNAPSHOT
-=======
->>>>>>> Version set to 3.3.3
-        <version>3.3.4-SNAPSHOT</version>
-=======
-        <version>3.3.2</version>
->>>>>>> e1f43bc85f... Version set to 3.3.2
-<<<<<<< HEAD
->>>>>>> Version set to 3.3.2
-=======
-=======
-        <version>3.3.3-SNAPSHOT</version>
->>>>>>> e5594bde19... Version set to 3.3.3-SNAPSHOT
-<<<<<<< HEAD
->>>>>>> Version set to 3.3.3-SNAPSHOT
-=======
-=======
-        <version>3.3.3</version>
->>>>>>> be806743ef... Version set to 3.3.3
->>>>>>> Version set to 3.3.3
+        <version>3.4.0-SNAPSHOT</version>
         <artifactId>msa</artifactId>
     </parent>
     <groupId>org.thingsboard.msa</groupId>
@@ -109,8 +80,8 @@
                             <goal>install-node-and-yarn</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v12.16.1</nodeVersion>
-                            <yarnVersion>v1.22.4</yarnVersion>
+                            <nodeVersion>v16.15.1</nodeVersion>
+                            <yarnVersion>v1.22.17</yarnVersion>
                         </configuration>
                     </execution>
                     <execution>
@@ -127,6 +98,7 @@
                         <goals>
                             <goal>yarn</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <arguments>run pkg</arguments>
                         </configuration>
@@ -191,7 +163,6 @@
                                 <resource>
                                     <directory>${basedir}</directory>
                                     <includes>
-                                        <include>server.js</include>
                                         <include>package.json</include>
                                         <include>yarn.lock</include>
                                     </includes>

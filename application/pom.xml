@@ -20,36 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.thingsboard</groupId>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <version>3.3.3</version>
-=======
-        <version>3.3.4-SNAPSHOT</version>
->>>>>>> Version set to 3.3.4-SNAPSHOT
-=======
-=======
->>>>>>> Version set to 3.3.3-SNAPSHOT
-=======
->>>>>>> Version set to 3.3.3
-        <version>3.3.4-SNAPSHOT</version>
-=======
-        <version>3.3.2</version>
->>>>>>> e1f43bc85f... Version set to 3.3.2
-<<<<<<< HEAD
->>>>>>> Version set to 3.3.2
-=======
-=======
-        <version>3.3.3-SNAPSHOT</version>
->>>>>>> e5594bde19... Version set to 3.3.3-SNAPSHOT
-<<<<<<< HEAD
->>>>>>> Version set to 3.3.3-SNAPSHOT
-=======
-=======
-        <version>3.3.3</version>
->>>>>>> be806743ef... Version set to 3.3.3
->>>>>>> Version set to 3.3.3
+        <version>3.4.0-SNAPSHOT</version>
         <artifactId>thingsboard</artifactId>
     </parent>
     <artifactId>application</artifactId>
@@ -97,6 +68,10 @@
         <dependency>
             <groupId>org.thingsboard.common</groupId>
             <artifactId>cluster-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.thingsboard.common</groupId>
+            <artifactId>version-control</artifactId>
         </dependency>
         <dependency>
             <groupId>org.thingsboard.rule-engine</groupId>
@@ -279,6 +254,10 @@
             <artifactId>grpc-stub</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.opensmpp</groupId>
+            <artifactId>opensmpp-core</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.thingsboard</groupId>
             <artifactId>springfox-boot-starter</artifactId>
         </dependency>
@@ -366,6 +345,10 @@
             <artifactId>Java-WebSocket</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.aerogear</groupId>
+            <artifactId>aerogear-otp-java</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -394,14 +377,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${surfire.version}</version>
                 <configuration>
                     <systemPropertyVariables>
                         <spring.config.name>thingsboard</spring.config.name>
                     </systemPropertyVariables>
                     <excludes>
-                        <exclude>**/sql/*Test.java</exclude>
-                        <exclude>**/psql/*Test.java</exclude>
                         <exclude>**/nosql/*Test.java</exclude>
                     </excludes>
                     <includes>

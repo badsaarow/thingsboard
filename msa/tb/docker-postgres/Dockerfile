@@ -14,32 +14,9 @@
 # limitations under the License.
 #
 
-FROM thingsboard/openjdk11
+FROM thingsboard/openjdk11:bullseye-slim
 
-RUN apt-get update
-RUN apt-get install -y curl gnupg2 wget
-RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main' | tee --append /etc/apt/sources.list.d/pgdg.list > /dev/null
-RUN curl -L https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 ENV PG_MAJOR 12
-RUN apt-get update
-RUN apt-get install -y postgresql-12
-RUN update-rc.d postgresql disable
-RUN wget https://github.com/thingsboard/thingsboard/releases/download/v3.3.3/thingsboard-3.3.3.deb
-RUN mv thingsboard-3.3.3.deb /tmp/
-
-COPY logback.xml thingsboard.conf install-tb.sh start-tb.sh upgrade-tb.sh start-db.sh stop-db.sh /tmp/
-
-RUN chmod a+x /tmp/*.sh \
-    && mv /tmp/start-tb.sh /usr/bin \
-    && mv /tmp/upgrade-tb.sh /usr/bin \
-    && mv /tmp/install-tb.sh /usr/bin \
-    && mv /tmp/start-db.sh /usr/bin \
-    && mv /tmp/stop-db.sh /usr/bin
-
-RUN dpkg -i /tmp/thingsboard-3.3.3.deb
-RUN rm /tmp/thingsboard-3.3.3.deb
-
-RUN systemctl --no-reload disable --now thingsboard.service > /dev/null 2>&1 || :
 
 ENV DATA_FOLDER=/data
 
@@ -49,23 +26,42 @@ ENV DATABASE_TS_TYPE=sql
 ENV PGDATA=/data/db
 ENV PATH=$PATH:/usr/lib/postgresql/12/bin
 
-ENV SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
 ENV SPRING_DRIVER_CLASS_NAME=org.postgresql.Driver
 ENV SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/thingsboard
 ENV SPRING_DATASOURCE_USERNAME=thingsboard
 ENV SPRING_DATASOURCE_PASSWORD=postgres
 
-
 ENV PGLOG=/var/log/postgres
-RUN mkdir -p $PGLOG
-RUN chown -R thingsboard:thingsboard $PGLOG
 
-RUN chown -R thingsboard:thingsboard /var/run/postgresql
+COPY logback.xml ${pkg.name}.conf start-db.sh stop-db.sh start-tb.sh upgrade-tb.sh install-tb.sh ${pkg.name}.deb /tmp/
 
-RUN mkdir -p /data
-RUN chown -R thingsboard:thingsboard /data
-
-RUN chown -R thingsboard:thingsboard /var/log/thingsboard
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends wget gnupg2 \
+    && echo "deb http://apt.postgresql.org/pub/repos/apt/ $(. /etc/os-release && echo -n $VERSION_CODENAME)-pgdg main" | tee --append /etc/apt/sources.list.d/pgdg.list > /dev/null \
+    && wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O- | apt-key add - \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends postgresql-${PG_MAJOR} \
+    && rm -rf /var/lib/apt/lists/* \
+    && update-rc.d postgresql disable \
+    && apt-get purge -y --auto-remove \
+    && chmod a+x /tmp/*.sh \
+    && mv /tmp/start-tb.sh /usr/bin \
+    && mv /tmp/upgrade-tb.sh /usr/bin \
+    && mv /tmp/install-tb.sh /usr/bin \
+    && mv /tmp/start-db.sh /usr/bin \
+    && mv /tmp/stop-db.sh /usr/bin \
+    && dpkg -i /tmp/${pkg.name}.deb \
+    && rm /tmp/${pkg.name}.deb \
+    && (systemctl --no-reload disable --now ${pkg.name}.service > /dev/null 2>&1 || :) \
+    && mv /tmp/logback.xml ${pkg.installFolder}/conf \
+    && mv /tmp/${pkg.name}.conf ${pkg.installFolder}/conf \
+    && mkdir -p $PGLOG \
+    && chown -R ${pkg.user}:${pkg.user} $PGLOG \
+    && chown -R ${pkg.user}:${pkg.user} /var/run/postgresql \
+    && mkdir -p /data \
+    && chown -R ${pkg.user}:${pkg.user} /data \
+    && chown -R ${pkg.user}:${pkg.user} /var/log/${pkg.name} \
+    && chmod 555 ${pkg.installFolder}/bin/${pkg.name}.jar
 
 USER thingsboard
 

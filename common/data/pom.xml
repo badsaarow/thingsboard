@@ -20,36 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.thingsboard</groupId>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <version>3.3.3</version>
-=======
-        <version>3.3.4-SNAPSHOT</version>
->>>>>>> Version set to 3.3.4-SNAPSHOT
-=======
-=======
->>>>>>> Version set to 3.3.3-SNAPSHOT
-=======
->>>>>>> Version set to 3.3.3
-        <version>3.3.4-SNAPSHOT</version>
-=======
-        <version>3.3.2</version>
->>>>>>> e1f43bc85f... Version set to 3.3.2
-<<<<<<< HEAD
->>>>>>> Version set to 3.3.2
-=======
-=======
-        <version>3.3.3-SNAPSHOT</version>
->>>>>>> e5594bde19... Version set to 3.3.3-SNAPSHOT
-<<<<<<< HEAD
->>>>>>> Version set to 3.3.3-SNAPSHOT
-=======
-=======
-        <version>3.3.3</version>
->>>>>>> be806743ef... Version set to 3.3.3
->>>>>>> Version set to 3.3.3
+        <version>3.4.0-SNAPSHOT</version>
         <artifactId>common</artifactId>
     </parent>
     <groupId>org.thingsboard.common</groupId>
@@ -132,6 +103,10 @@
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.ruedigermoeller</groupId>
+            <artifactId>fst</artifactId>
         </dependency>
     </dependencies>
 
