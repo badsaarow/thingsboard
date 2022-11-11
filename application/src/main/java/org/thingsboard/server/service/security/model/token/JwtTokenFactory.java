@@ -25,11 +25,11 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
+import org.thingsboard.server.common.data.StringUtils;
 import org.thingsboard.server.common.data.id.CustomerId;
 import org.thingsboard.server.common.data.id.TenantId;
 import org.thingsboard.server.common.data.id.UserId;
@@ -60,6 +60,7 @@ public class JwtTokenFactory {
     private static final String IS_PUBLIC = "isPublic";
     private static final String TENANT_ID = "tenantId";
     private static final String CUSTOMER_ID = "customerId";
+    private static final String SESSION_ID = "sessionId";
 
     private final JwtSettings settings;
 
@@ -119,6 +120,9 @@ public class JwtTokenFactory {
         if (customerId != null) {
             securityUser.setCustomerId(new CustomerId(UUID.fromString(customerId)));
         }
+        if (claims.get(SESSION_ID, String.class) != null) {
+            securityUser.setSessionId(claims.get(SESSION_ID, String.class));
+        }
 
         UserPrincipal principal;
         if (securityUser.getAuthority() != Authority.PRE_VERIFICATION_TOKEN) {
@@ -161,6 +165,9 @@ public class JwtTokenFactory {
         UserPrincipal principal = new UserPrincipal(isPublic ? UserPrincipal.Type.PUBLIC_ID : UserPrincipal.Type.USER_NAME, subject);
         SecurityUser securityUser = new SecurityUser(new UserId(UUID.fromString(claims.get(USER_ID, String.class))));
         securityUser.setUserPrincipal(principal);
+        if (claims.get(SESSION_ID, String.class) != null) {
+            securityUser.setSessionId(claims.get(SESSION_ID, String.class));
+        }
         return securityUser;
     }
 
@@ -183,6 +190,9 @@ public class JwtTokenFactory {
         Claims claims = Jwts.claims().setSubject(principal.getValue());
         claims.put(USER_ID, securityUser.getId().getId().toString());
         claims.put(SCOPES, scopes);
+        if (securityUser.getSessionId() != null) {
+            claims.put(SESSION_ID, securityUser.getSessionId());
+        }
 
         ZonedDateTime currentTime = ZonedDateTime.now();
 
